@@ -1,0 +1,16 @@
+# Environment / secrets
+.env
+
+# Data files (large / generated)
+data/raw/
+data/processed/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# macOS
+.DS_Store

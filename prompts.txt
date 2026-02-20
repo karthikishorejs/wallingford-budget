@@ -1,0 +1,53 @@
+## PDF extractor 
+Create extractor.py that:
+1. Takes the PDF at data/raw/budget.json using PyMuPDF (fitz) to convert each page to an image
+2. Sends each page image to Gemini 1.5 Pro vision API
+3. For each page, extracts all budget line items as structured JSON with fields: department, sub_department, line_item, current_year_budget, prior_year_budget, change_amount, change_percent
+4. Handles pages that are summary pages vs detail pages differently
+5. Saves the combined output to data/processed/budget.json
+6. Prints progress as it processes each page
+
+Use python-dotenv to load the GEMINI_API_KEY from .env
+
+#  Insights Engine
+Create insights.py that reads data/processed/budget.json and computes the following insights:
+
+1. Total budget amount
+2. Top 10 departments by budget size with percentages of total
+3. Top 5 departments with biggest year-over-year increases (dollar and percent)
+4. Top 5 departments with biggest year-over-year decreases
+5. General Fund vs Education vs Utilities spending split
+6. Per resident cost for top departments (Wallingford population is 45,000)
+7. Capital investment total and what it's going toward
+
+Save all insights to data/processed/insights.json
+Print a readable summary to console when run
+
+# Q&A agent 
+Create agent.py with a function called ask_budget(question: str) -> str that:
+
+1. Loads data/processed/budget.json and insights.json
+2. Based on the question, selects only the relevant subset of budget data (not the whole file)
+3. Calls Gemini API with this system prompt:
+
+"You are a neutral, helpful budget analyst for Wallingford CT. 
+Answer ONLY based on the budget data provided. 
+Always cite specific numbers. 
+If data is not available, say so clearly. 
+Keep answers concise and citizen-friendly, avoid jargon."
+
+4. Returns the answer as a string
+5. Include a main() function that runs a simple command line Q&A loop for testing
+
+# Streamit App 
+Create app.py as a Streamlit application with:
+
+1. Header: "Wallingford CT Budget Explorer 2025-26"
+2. A metrics row showing: Total Budget, vs Prior Year change, Per Resident cost
+3. A plotly bar chart of top 10 departments by spending
+4. A plotly pie chart of General Fund vs Education vs Utilities split
+5. A section titled "Key Insights" that displays the pre-computed insights from insights.json as readable cards
+6. A chat interface at the bottom where users can ask questions, powered by agent.py
+7. Clean, professional styling — use Wallingford's town colors if possible (blue and white)
+
+Make it look polished, not like a default Streamlit app.
