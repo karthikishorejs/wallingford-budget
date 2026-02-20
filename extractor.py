@@ -176,7 +176,8 @@ def parse_response(raw: str) -> tuple[str, dict, list[dict]]:
 # Known fund/division names for fallback inference
 KNOWN_FUNDS = [
     "ELECTRIC DIVISION", "SEWER DIVISION", "WATER DIVISION",
-    "GENERAL FUND", "CAPITAL AND NON-RECURRING", "SPECIAL FUNDS",
+    "GENERAL FUND", "CAPITAL AND NON-RECURRING", "SPECIAL FUNDS BOARD OF EDUCATION",
+    "SPECIAL FUNDS TOWN GOVERNMENT"
 ]
 
 

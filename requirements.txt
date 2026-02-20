@@ -4,3 +4,4 @@ pandas
 plotly
 python-dotenv
 pymupdf
+pytest
